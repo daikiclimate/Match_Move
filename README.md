@@ -11,6 +11,8 @@
 
 ![result](https://user-images.githubusercontent.com/40888763/87899036-e6851380-ca8a-11ea-9715-027b703578d4.gif)
 
+ちょっと容量落とす際にちょっとずれてしまったけど、元々のmp4は同じものです
+
 ##画像単位のマッチムーブ
 
 ```
@@ -42,6 +44,26 @@ python match_move.py images/base.png images/box.png images/ad.png
 ```
 python video_process.py videos/sample.mp4 videos/box.jpg videos/ad.jpg 
 ```
+
+第１引数
+動画名。
+
+第２引数
+探索したい特定領域の画像。スクショで良い
+座標を指定するよりもこっちのが使い勝手いいかなと思った
+
+第３引数
+探索した特定領域を置き換える先の画像。差込広告のような感じ
+
+第４引数
+--output output default
+出力画像の名前を変更可能
+
+第５引数
+--param 1
+特定領域の大きさが大きすぎる際に、うまく特徴点マッチングができない場合がある。
+デフォルトでは１。5の場合は第２引数の画像を1/5のサイズに小さくする。
+なるべく、探索元の画像内のやつを同じサイズの方がうまくいきやすい
 
 #記事
 qiita:https://qiita.com/daikiclimate/private/01d878fc53c3485feb59
