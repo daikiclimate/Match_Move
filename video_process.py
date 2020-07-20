@@ -7,16 +7,20 @@ import match_move
 
 def load_args():
     parser = argparse.ArgumentParser(description='match move')  
-    # 3. parser.add_argumentで受け取る引数を追加していく
-    parser.add_argument('video_name', help='-')    
-    # 必須の引数を追加
-    parser.add_argument('box_name', help='-')
-    parser.add_argument('ad_name', help='-')
+    parser.add_argument('video_name', help='置き換えるよう画像。探索する大きい画像')    
+    parser.add_argument('box', help='探索したい領域')
+    parser.add_argument('ad', help='探索してきた領域を置き換える用画像')
+
+    parser.add_argument('--output_video',default = "output.mp4" ,help='探索してきた領域を置き換える用画像')
+    parser.add_argument('--param',default = 1 ,help='探索してきた領域を置き換える用画像')
+    parser.add_argument('--fix',default = 1 ,help='ホモグラフィー行列を失敗した時に修正する')
+    parser.add_argument('--psnr_th',default = 4 ,help='psnrが一定値以上の場合に崩壊と判断')
     args = parser.parse_args()
     return args
 
+
 def load_video(video_name):
-    video = cv2.VideoCapture("videos/"+video_name)
+    video = cv2.VideoCapture(video_name)
     if video.isOpened():
         return video
     else:
@@ -29,39 +33,45 @@ def main():
 
     #videoのロード
     video = load_video(args.video_name)
+
     # 幅
     W = video.get(cv2.CAP_PROP_FRAME_WIDTH)
     # 高さ
     H = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    # fourcc = cv2.VideoWriter_fourcc(*'XVID')
 
     out = cv2.VideoWriter(
-            'output/'+args.video_name,
+            # "output/output.mp4",
+            "output/" + args.output_video,
             fourcc,
             30,
             (int(W),int(H))
             )
 
     t = 0
-    psnr_th = 4
     while True:
        ret, frame = video.read()
        if ret==False:
            break
-       output_frame,psnr = match_move.video_function(base = frame)
-       print(t, psnr)
+
+       #マッチムーブの結果を返す
+       output_frame,psnr = match_move.video_function(base = frame, box = args.box, ad = args.ad)
        
-       if True:
+       if False:
+           print(t, psnr)
+           #途中の出力をフレーム単位で保存する。
+           #でバグで使用可能
            cv2.imwrite("tmp/tmp"+str(t)+".jpg", output_frame)
            t += 1
-       # match_move.video_function(base = frame, args.box_name, args.ad_name)
-       if psnr > psnr_th:
-           print("fixed")
-           output_frame = previous_frame
-       else:
-           previous_frame = output_frame
+
+       if args.fix:
+           if psnr > args.psnr_th:
+               print("fixed")
+               output_frame = previous_frame
+           else:
+               previous_frame = output_frame
+
        out.write(output_frame) 
     
     cv2.destroyAllWindows()
