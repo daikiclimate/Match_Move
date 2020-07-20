@@ -13,7 +13,7 @@
 
 ちょっと容量落とす際にちょっとずれてしまったけど、元々のmp4は同じものです
 
-##画像単位のマッチムーブ
+#画像単位のマッチムーブ
 
 ```
 python match_move.py images/base.png images/box.png images/ad.png 
@@ -39,7 +39,7 @@ python match_move.py images/base.png images/box.png images/ad.png
 デフォルトでは１。5の場合は第２引数の画像を1/5のサイズに小さくする。
 なるべく、探索元の画像内のやつを同じサイズの方がうまくいきやすい
 
-##動画のマッチムーブ
+#動画のマッチムーブ
 
 ```
 python video_process.py videos/sample.mp4 videos/box.jpg videos/ad.jpg 
