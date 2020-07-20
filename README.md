@@ -2,6 +2,10 @@
 
 マッチムーブを実装しました
 
+https://github.com/daikiclimate/Match_Move/issues/1
+
+https://github.com/daikiclimate/Match_Move/issues/2
+
 
 ```
 python match_move.py images/base.png images/box.png images/ad.png 
