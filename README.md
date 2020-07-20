@@ -4,6 +4,8 @@
 
 ![result](https://user-images.githubusercontent.com/40888763/87899036-e6851380-ca8a-11ea-9715-027b703578d4.gif)
 
+<src img = "https://user-images.githubusercontent.com/40888763/87899036-e6851380-ca8a-11ea-9715-027b703578d4.gif" width = 50%>
+
 ![source](https://user-images.githubusercontent.com/40888763/87899006-c6edeb00-ca8a-11ea-80b3-574088a5804b.gif)
 
 ```
