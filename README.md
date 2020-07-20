@@ -11,6 +11,8 @@
 
 ![result](https://user-images.githubusercontent.com/40888763/87899036-e6851380-ca8a-11ea-9715-027b703578d4.gif)
 
+##画像単位のマッチムーブ
+
 ```
 python match_move.py images/base.png images/box.png images/ad.png 
 ```
@@ -35,6 +37,11 @@ python match_move.py images/base.png images/box.png images/ad.png
 デフォルトでは１。5の場合は第２引数の画像を1/5のサイズに小さくする。
 なるべく、探索元の画像内のやつを同じサイズの方がうまくいきやすい
 
+##動画のマッチムーブ
+
+```
+python video_process.py videos/sample.mp4 videos/box.jpg videos/ad.jpg 
+```
 
 #記事
 qiita:https://qiita.com/daikiclimate/private/01d878fc53c3485feb59
